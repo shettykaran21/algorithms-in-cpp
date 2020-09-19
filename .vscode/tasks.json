@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build and Run C++",
+      "type": "shell",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-std=c++17",
+        "\"${relativeFile}\"",
+        "-o",
+        "test.out",
+        "&&",
+        "./test.out",
+        "<",
+        "input.txt",
+        ">",
+        "output.txt",
+        "&&",
+        "rm",
+        "test.out"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": {
+        "owner": "cpp",
+        "fileLocation": ["relative", "${workspaceRoot}"],
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "severity": 4,
+          "message": 5
+        }
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Build C++",
+      "command": "/usr/bin/g++",
+      "args": [
+        "-g",
+        "${relativeFile}",
+        "-o",
+        "${fileDirname}/${fileBasenameNoExtension}"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": ["$gcc"]
+    }
+  ]
+}
